@@ -17,5 +17,8 @@
         "mix-tailwindcss": "^1.3.0",
         "postcss": "^8.3.6",
         "tailwindcss": "^2.2.7"
+    },
+    "dependencies": {
+        "live-server": "^1.2.1"
     }
 }
