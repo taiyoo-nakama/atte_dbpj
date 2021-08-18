@@ -20,4 +20,7 @@ Route::get('/', function () {
 });
 
 Route::get('/', [WorkController::class,'work']);
+//勤務開始
+Route::get('/start', [WorkController::class,'start']);
+
 Route::get('/attendance', [WorkController::class,'attendance']);

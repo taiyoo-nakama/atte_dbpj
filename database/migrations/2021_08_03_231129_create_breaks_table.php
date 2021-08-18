@@ -18,6 +18,8 @@ class CreateBreaksTable extends Migration
             $table->integer('work_id');
             $table->timestamp('start_break')->useCurrent()->nullable();
             $table->timestamp('end_break')->useCurrent()->nullable();
+            $table->timestamp('created_at')->useCurrent()->nullable();
+            $table->timestamp('updated_at')->useCurrent()->nullable();
         });
     }
 
