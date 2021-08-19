@@ -11,7 +11,4 @@ class Work extends Model
     //
     protected $fillable = ['user_id','start_time','end_time'];
 
-    public function getFullNameAttribute(){
-        return $this->last_name . ' '.$this->first_name;
-    }
 }
