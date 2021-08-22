@@ -18,7 +18,6 @@ class CreateWorksTable extends Migration
             $table->integer('user_id');
             $table->timestamp('start_time')->useCurrent()->nullable();
             $table->timestamp('end_time')->useCurrent()->nullable();
-            $table->string('comment',255);
             $table->timestamp('created_at')->useCurrent()->nullable();
             $table->timestamp('updated_at')->useCurrent()->nullable();
         });
