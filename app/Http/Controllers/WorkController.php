@@ -21,14 +21,25 @@ class WorkController extends Controller
     //データベースにデータを記載
     public function start()
     {
-        $times = Carbon::now();
+        $start_times = Carbon::now();
+        //$end_times = Carbon::now();
 
         Work::create([
             'user_id' => 1,
-            'start_time' => $times
-
-
+            'start_time' => $start_times,
+            //'end_time' => $end_times
         ]);
+        return view('tests.work-test1');
+    }
+    public function end()
+    {
+        $end_times = Carbon::now();
+        return view('tests.work-test1');
+    }
+    public function update()
+    {
+        $end_times = Carbon::now();
+        Work::update($end_times);
         return view('tests.work-test1');
     }
 }

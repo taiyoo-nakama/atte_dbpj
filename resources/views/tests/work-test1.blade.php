@@ -37,16 +37,19 @@
     <div class="md:h-full md:py-36 w-screen flex justify-center items-center">
       <div class="">
         <p>さんお疲れ様です！</p>
-          <table class="">
+        <table class="">
+          <form action="" method="POST">
             <tr>
               <th class="py-4 px-4"><a href="/start" class="py-20 px-32 text-white text-2xl rounded-lg bg-red-500 font-bold	 shadow-lg block md:inline-block">勤務開始</a></th>
-              <th class="py-4 px-4"><button class="py-20 px-32 text-white text-2xl rounded-lg bg-yellow-400 font-bold	 shadow-lg block md:inline-block">勤務終了</button></th>
+
+              <th class="py-4 px-4"><a href="/end" class="py-20 px-32 text-white text-2xl rounded-lg bg-yellow-400 font-bold	 shadow-lg block md:inline-block">勤務終了</a></th>
             </tr>
           <tr>
-            <th class="py-4 px-4"><button class="py-20 px-32 text-white text-2xl rounded-lg bg-purple-600 font-bold	 shadow-lg block md:inline-block">休憩開始</button></th>
-            <th class="py-4 px-4"><button class="py-20 px-32 text-white text-2xl rounded-lg bg-green-400 font-bold	 shadow-lg block md:inline-block">休憩終了</button></th>
+            <th class="py-4 px-4"><a href="/break_start" class="py-20 px-32 text-white text-2xl rounded-lg bg-purple-600 font-bold	 shadow-lg block md:inline-block">休憩開始</a></th>
+            <th class="py-4 px-4"><a href="/break_end" class="py-20 px-32 text-white text-2xl rounded-lg bg-green-400 font-bold	 shadow-lg block md:inline-block">休憩終了</a></th>
           </tr>
-          </table>
+        </form>
+        </table>
       </div>
     </div>
   </div>
