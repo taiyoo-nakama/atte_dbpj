@@ -39,7 +39,7 @@ class WorkController extends Controller
     public function update()
     {
         $end_times = Carbon::now();
-        Work::update($end_times);
+        Work::where('user_id',$request->user_id)->update(['end_time' => $end_times]);
         return view('tests.work-test1');
     }
 }

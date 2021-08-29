@@ -38,12 +38,18 @@
       <div class="">
         <p>さんお疲れ様です！</p>
         <table class="">
-          <form action="" method="POST">
+          <form action="/start" method="POST">
+          @csrf
             <tr>
               <th class="py-4 px-4"><a href="/start" class="py-20 px-32 text-white text-2xl rounded-lg bg-red-500 font-bold	 shadow-lg block md:inline-block">勤務開始</a></th>
+            </form>
 
-              <th class="py-4 px-4"><a href="/end" class="py-20 px-32 text-white text-2xl rounded-lg bg-yellow-400 font-bold	 shadow-lg block md:inline-block">勤務終了</a></th>
+            <form action="/end" method="POST">
+              <th class="py-4 px-4">
+                <input type="hidden" name="user_id" value="1">
+                <a href="/end" class="py-20 px-32 text-white text-2xl rounded-lg bg-yellow-400 font-bold	 shadow-lg block md:inline-block">勤務終了</a></th>
             </tr>
+          </form>
           <tr>
             <th class="py-4 px-4"><a href="/break_start" class="py-20 px-32 text-white text-2xl rounded-lg bg-purple-600 font-bold	 shadow-lg block md:inline-block">休憩開始</a></th>
             <th class="py-4 px-4"><a href="/break_end" class="py-20 px-32 text-white text-2xl rounded-lg bg-green-400 font-bold	 shadow-lg block md:inline-block">休憩終了</a></th>
