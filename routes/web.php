@@ -20,9 +20,13 @@ Route::get('/', function () {
 });
 
 Route::get('/', [WorkController::class,'work']);
+Route::get('/attendance', [WorkController::class,'attendance']);
 //勤務開始
-Route::get('/start', [WorkController::class,'start']);
-
-Route::post('/attendance', [WorkController::class,'attendance']);
-Route::get('/end',[WorkController::class,'end']);
+Route::post('/start', [WorkController::class,'start']);
+//勤務終了
+//Route::get('/end',[WorkController::class,'end']);
 Route::post('/end',[WorkController::class,'update']);
+//休憩開始
+Route::post('/rest_start',[WorkController::class,'rest_start']);
+//休憩終了
+Route::post('/rest_end',[WorkController::class,'rest_end']);

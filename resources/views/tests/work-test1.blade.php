@@ -37,22 +37,56 @@
     <div class="md:h-full md:py-36 w-screen flex justify-center items-center">
       <div class="">
         <p>さんお疲れ様です！</p>
+        @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
         <table class="">
+          <!-- 勤務開始 -->
           <form action="/start" method="POST">
           @csrf
+          @error('name')
+          <p>
+            出勤済みです
+          </p>
+          @enderror
             <tr>
-              <th class="py-4 px-4"><a href="/start" class="py-20 px-32 text-white text-2xl rounded-lg bg-red-500 font-bold	 shadow-lg block md:inline-block">勤務開始</a></th>
-            </form>
-
-            <form action="/end" method="POST">
               <th class="py-4 px-4">
                 <input type="hidden" name="user_id" value="1">
-                <a href="/end" class="py-20 px-32 text-white text-2xl rounded-lg bg-yellow-400 font-bold	 shadow-lg block md:inline-block">勤務終了</a></th>
-            </tr>
-          </form>
+                <button><input type="submit" value="勤務開始" class="py-20 px-32 text-white text-2xl rounded-lg bg-red-500 font-bold	 shadow-lg block md:inline-block"></button>
+              </th>
+              </form>
+              <!-- 勤務終了 -->
+              <form action="/end" method="POST">
+              @csrf
+              <th class="py-4 px-4">
+                <input type="hidden" name="user_id" value="1">
+                <button><input type="submit" value="勤務終了" class="py-20 px-32 text-white text-2xl rounded-lg bg-yellow-400 font-bold	 shadow-lg block md:inline-block"></button>
+              </th>
+              </tr>
+            </form>
+            <!-- 休憩開始 -->
+          <form action="/rest_start" method="POST">
+            @csrf
           <tr>
-            <th class="py-4 px-4"><a href="/break_start" class="py-20 px-32 text-white text-2xl rounded-lg bg-purple-600 font-bold	 shadow-lg block md:inline-block">休憩開始</a></th>
-            <th class="py-4 px-4"><a href="/break_end" class="py-20 px-32 text-white text-2xl rounded-lg bg-green-400 font-bold	 shadow-lg block md:inline-block">休憩終了</a></th>
+              <th class="py-4 px-4">
+                <input type="hidden" name="user_id" value="1">
+                <button><input type="submit" value="休憩開始" class="py-20 px-32 text-white text-2xl rounded-lg bg-purple-600 font-bold	 shadow-lg block md:inline-block"></button>
+              </th>
+                </form>
+            <!-- 休憩終了 -->
+          <form action="/rest_end" method="POST">
+            @csrf
+              <th class="py-4 px-4">
+                <input type="hidden" name="user_id" value="1">
+                <button>
+                  <input type="submit" value="休憩終了" class="py-20 px-32 text-white text-2xl rounded-lg bg-green-400 font-bold	 shadow-lg block md:inline-block"></button>
+                </th>
           </tr>
         </form>
         </table>
