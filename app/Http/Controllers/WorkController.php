@@ -19,28 +19,41 @@ class WorkController extends Controller
         return view('tests.attendance-test1');
     }
 
-    //データベースにデータを記載
     //勤務開始
-    public function start()
+    public function start(Request $request)
     {
-        $start_times = Carbon::now();
-        //$end_times = Carbon::now();
+        //打刻1日一回
+        $oldTimestamp = Work::where('user_id',$request->user_id)->latest()->first();
+        if($oldTimestamp){
+            $oldTimestamp_start = new Carbon($oldTimestamp->start);
+            $oldTimestampDay = $oldTimestamp_start->startOfDay();
+        }
 
-        Work::create([
+        $newTimestampDay = Carbon::today();
+
+        //日付比較。同日月の出勤打刻で、退勤打刻がない場合エラーを吐き出す
+        if(($oldTimestampDay == $newTimestampDay) && (empty($oldTimestamp->end))){
+            return view('tests.work-test1');
+        }
+        //createメソッド
+        $start_times = Carbon::now();
+
+        $timestamp = Work::create([
             'user_id' => 1,
             'start_time' => $start_times,
-            //'end_time' => $end_times
         ]);
         return view('tests.work-test1',['start_time' => $start_times]);
     }
     //勤務終了
-    /*public function end()
-    {
-        $end_times = Carbon::now();
-        return view('tests.work-test1');
-    }*/
+    
     public function update(Request $request)
     {
+        //エラー確認（1日一回の打刻）
+        if(!empty($timestamp->update)){
+            return view('test.work-test1');
+        }
+
+        //updateめそっど
         $end_times = Carbon::now();
         Work::where('user_id',$request->user_id)->update(['end_time' => $end_times]);
         return view('tests.work-test1',['end_time' => $end_times]);

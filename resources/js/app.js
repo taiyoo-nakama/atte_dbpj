@@ -1,8 +1,3 @@
-import "tailwindcss/tailwind.css"
+require('./bootstrap');
 
-const app = new Vue({
-  el: '#app',
-  components: {
-    FooBar,
-  }
-})
+require('alpinejs');

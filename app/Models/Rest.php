@@ -11,9 +11,8 @@ class Rest extends Model
     protected $fillable = ['user_id','rest_start','rest_end'];
 
     public static $rules = array(
-        'user_id' => 'required',
+        'user_id' => 'required',//uniqueは使いづらい（時間）
         'rest_start' => 'date',
         'rest_end' => 'date'
     );
-
 }
