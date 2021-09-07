@@ -1,3 +1,7 @@
+@extends('tests.work-test1')
+<div class="header">
+    @yield('header')
+</div>
 <x-guest-layout>
     <x-auth-card>
         <x-slot name="logo">

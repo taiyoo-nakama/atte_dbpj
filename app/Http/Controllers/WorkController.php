@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Worker;
 use App\Models\Work;
 use App\Models\Rest;
@@ -13,7 +14,10 @@ class WorkController extends Controller
 {
     //Work model
     public function work(){
-        return view('tests.work-test1');
+        $user = Work::user();
+        $items = Work::paginate(4);
+        $param = ['items' =>$items,'user'=>$user];
+        return view('tests.work-test1',$param);
     }
     public function attendance(){
         return view('tests.attendance-test1');
@@ -23,7 +27,7 @@ class WorkController extends Controller
     public function start(Request $request)
     {
         //打刻1日一回
-        $oldTimestamp = Work::where('user_id',$request->user_id)->latest()->first();
+        /*$oldTimestamp = Work::where('user_id',$request->user_id)->latest()->first();
         if($oldTimestamp){
             $oldTimestamp_start = new Carbon($oldTimestamp->start);
             $oldTimestampDay = $oldTimestamp_start->startOfDay();
@@ -34,13 +38,13 @@ class WorkController extends Controller
         //日付比較。同日月の出勤打刻で、退勤打刻がない場合エラーを吐き出す
         if(($oldTimestampDay == $newTimestampDay) && (empty($oldTimestamp->end))){
             return view('tests.work-test1');
-        }
-        //createメソッド
-        $start_times = Carbon::now();
+        }*/
 
+        //createメソッド
         $timestamp = Work::create([
             'user_id' => 1,
-            'start_time' => $start_times,
+            //'start_time' => Carbon::now(),
+            $start_times = Carbon::now(),
         ]);
         return view('tests.work-test1',['start_time' => $start_times]);
     }

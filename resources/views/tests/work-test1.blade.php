@@ -9,6 +9,7 @@
   <title>打刻ページ</title>
 </head>
 <body>
+  @section('header')
   <div class=" bg-gray-800 bg-opacity-90 shadow-2xl ">
   <header class="container mx-auto text-white">
       <div class="flex justify-between items-center p-3 md:float-left">
@@ -21,6 +22,7 @@
           </button>
         </div>
         </div>
+        @endsection
         <div :class="isOpen ? 'block' : 'hidden'" >
           <ul class="md:flex md:justify-end  text-white">
             <li class="border-b md:border-none"><a href="/" class="block px-8 py-2 my-4 hover:bg-gray-500 rounded">ホーム</a></li>
@@ -58,8 +60,8 @@
             <tr>
               <th class="py-4 px-4">
                 <input type="hidden" name="user_id" value="1">
-                <button>
-                <input type="submit" value="勤務開始" class="py-20 px-32 text-white text-2xl rounded-lg bg-red-500 font-bold	 shadow-lg block md:inline-block"></button>
+                <button onclick="style.display='none'" class="py-20 px-32 text-white text-2xl rounded-lg bg-red-500 font-bold	 shadow-lg block md:inline-block">勤務開始</button>
+
               </th>
               </form>
               <!-- 勤務終了 -->
