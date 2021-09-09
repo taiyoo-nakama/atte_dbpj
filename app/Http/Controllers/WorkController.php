@@ -14,10 +14,10 @@ class WorkController extends Controller
 {
     //Work model
     public function work(){
-        $user = Work::user();
+        /*$user = Work::user();
         $items = Work::paginate(4);
-        $param = ['items' =>$items,'user'=>$user];
-        return view('tests.work-test1',$param);
+        $param = ['items' =>$items,'user'=>$user];*/
+    return view('tests.work-test1',/*$param*/);
     }
     public function attendance(){
         return view('tests.attendance-test1');
@@ -43,7 +43,7 @@ class WorkController extends Controller
         //createメソッド
         $timestamp = Work::create([
             'user_id' => 1,
-            //'start_time' => Carbon::now(),
+            'date' => $request->date,
             $start_times = Carbon::now(),
         ]);
         return view('tests.work-test1',['start_time' => $start_times]);
