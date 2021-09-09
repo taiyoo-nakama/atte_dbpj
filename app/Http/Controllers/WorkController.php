@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Worker;
@@ -43,10 +43,11 @@ class WorkController extends Controller
         //createメソッド
         $timestamp = Work::create([
             'user_id' => 1,
-            'date' => $request->date,
+            'date' => $request->$date,
             $start_times = Carbon::now(),
         ]);
-        return view('tests.work-test1',['start_time' => $start_times]);
+        return view('tests.work-test1',['start_time' => $start_times
+    ]);
     }
     //勤務終了
     

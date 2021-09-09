@@ -16,7 +16,7 @@ class CreateWorksTable extends Migration
         Schema::create('works', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
-            $table->timestamp('date')->useCurrent()->nullable();;
+            $table->timestamp('date');
             $table->timestamp('start_time')->useCurrent()->nullable();
             $table->timestamp('end_time')->useCurrent()->nullable();
             $table->timestamp('created_at')->useCurrent()->nullable();
