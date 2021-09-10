@@ -59,9 +59,9 @@
           @enderror
             <tr>
               <th class="py-4 px-4">
-                <input type="hidden" name="user/id" value="1">
-                <input type="hidden" name="date" value="date">
-                @if(count($date) === 0)
+                <input type="hidden" name="user_id" value="1">
+                <input type="hidden" name="date" value="5/5">
+                @if(count(date) === 0)
                 <button class="py-20 px-32 text-white text-2xl rounded-lg bg-red-500 font-bold	 shadow-lg block md:inline-block">勤務開始</button>
                 @else(count($date)>1)
                 <button disabled class="py-20 px-32 text-white text-2xl rounded-lg bg-red-500 font-bold	 shadow-lg block md:inline-block">勤務開始</button>

@@ -14,7 +14,7 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('/', [WorkController::class,'work']);
+Route::get('/', [WorkController::class,'work']);//->middleware('auth');
 Route::get('/attendance', [WorkController::class,'attendance']);
 //勤務開始
 Route::post('/start', [WorkController::class,'start']);
