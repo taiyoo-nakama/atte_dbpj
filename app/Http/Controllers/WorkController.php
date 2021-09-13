@@ -17,7 +17,7 @@ class WorkController extends Controller
        /* $user = Work::user();
         $items = Work::paginate(4);
         $param = ['items' =>$items,'user'=>$user];*/
-        $date = Carbon::today();
+        $date = Carbon::now()->toDateString();
     return view('tests.work-test1',[
         'date' => $date,
     ]/*$param*/);
