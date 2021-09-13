@@ -46,9 +46,9 @@ class WorkController extends Controller
     public function update(Request $request)
     {
         //エラー確認（1日一回の打刻）
-        if(!empty($timestamp->update)){
+        /*if(!empty($timestamp->update)){
             return view('test.work-test1');
-        }
+        }*/
 
         //updateめそっど
         $end_times = Carbon::now();
