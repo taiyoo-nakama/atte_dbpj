@@ -17,13 +17,22 @@ class WorkController extends Controller
        /* $user = Work::user();
         $items = Work::paginate(4);
         $param = ['items' =>$items,'user'=>$user];*/
-        $date = Carbon::now()->toDateString();
-        Work::where('date')
-        ->work(['date' => $date])->get();
-    return view('tests.work-test1',[
-        'date' => $date,
-    ]/*$param*/);
+        $param = [
+            $date = Carbon::now()->toDateString(),
+            $item = Work::where('date',$request->item)->first()
+        ];
+        return view('tests.work-test1',[
+            'date' => $param
+        ]);
     }
+    /*public function search(Request $request){
+        $date = Work::where('date',$request->input)->first();
+        $param = [
+            'input' => $request->input,
+            'date' => $date
+        ];
+        return view('tests.work-test1',$param);
+    }*/
     public function attendance(){
         return view('tests.attendance-test1');
     }
