@@ -45,11 +45,11 @@ class WorkController extends Controller
             'user_id' => 1,
             $start_times = Carbon::now(),
             //'date' => '',
-            //$date = Carbon::today(),
+            $date = Carbon::today(),
         ]);
         return view('tests.work-test1',[
             'start_times' => $start_times,
-            //'date' => $date,
+            'date' => $date,
         ]);
     }
     //勤務終了
