@@ -17,12 +17,10 @@ class WorkController extends Controller
        /* $user = Work::user();
         $items = Work::paginate(4);
         $param = ['items' =>$items,'user'=>$user];*/
-        $param = [
-            
-            $item = Work::where('date')->first()
-        ];
+        $item = Work::where('date')->first();
+        $date = Carbon::today();
         return view('tests.work-test1',[
-            'date' => $param
+            'date' => $date,
         ]);
     }
     /*public function search(Request $request){
@@ -43,7 +41,8 @@ class WorkController extends Controller
         //createメソッド
         $timestamp = Work::create([
             'user_id' => 1,
-            $date = Carbon::createFromTimestamp('isToday'),
+            //'date' => '',
+            $date = Carbon::today(),
             ]);
         return view('tests.work-test1',[
             'timestamp' => $timestamp,
