@@ -18,8 +18,8 @@ class WorkController extends Controller
         $items = Work::paginate(4);
         $param = ['items' =>$items,'user'=>$user];*/
         $param = [
-            $date = Carbon::now()->toDateString(),
-            $item = Work::where('date',$request->item)->first()
+            
+            $item = Work::where('date')->first()
         ];
         return view('tests.work-test1',[
             'date' => $param
@@ -43,13 +43,10 @@ class WorkController extends Controller
         //createメソッド
         $timestamp = Work::create([
             'user_id' => 1,
-            $start_times = Carbon::now(),
-            //'date' => '',
-            $date = Carbon::today(),
-        ]);
+            $date = Carbon::now('isToday'),
+            ]);
         return view('tests.work-test1',[
-            'start_times' => $start_times,
-            'date' => $date,
+            'timestamp' => $timestamp,
         ]);
     }
     //勤務終了
