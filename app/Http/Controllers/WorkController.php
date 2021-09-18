@@ -43,7 +43,7 @@ class WorkController extends Controller
         //createメソッド
         $timestamp = Work::create([
             'user_id' => 1,
-            $date = Carbon::now('isToday'),
+            $date = Carbon::createFromTimestamp('isToday'),
             ]);
         return view('tests.work-test1',[
             'timestamp' => $timestamp,
