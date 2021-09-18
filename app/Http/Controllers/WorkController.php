@@ -18,7 +18,7 @@ class WorkController extends Controller
         $items = Work::paginate(4);
         $param = ['items' =>$items,'user'=>$user];*/
         $item = Work::where('date')->first();
-        $date = Carbon::today();
+        $date = Carbon::today()->parse('2021-01-01');
         return view('tests.work-test1',[
             'date' => $date,
         ]);
@@ -42,7 +42,8 @@ class WorkController extends Controller
         $timestamp = Work::create([
             'user_id' => 1,
             //'date' => '',
-            $date = Carbon::today(),
+            $date = Carbon::today()->parse('2021-01-01'),
+            'date' => $date,
             ]);
         return view('tests.work-test1',[
             'timestamp' => $timestamp,
