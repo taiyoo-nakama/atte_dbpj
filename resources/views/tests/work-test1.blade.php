@@ -9,6 +9,7 @@
   <title>打刻ページ</title>
 </head>
 <body>
+  
   <div class=" bg-gray-800 bg-opacity-90 shadow-2xl ">
   <header class="container mx-auto text-white">
       <div class="flex justify-between items-center p-3 md:float-left">
@@ -24,19 +25,30 @@
         <div :class="isOpen ? 'block' : 'hidden'" >
           <ul class="md:flex md:justify-end  text-white">
             <li class="border-b md:border-none"><a href="/" class="block px-8 py-2 my-4 hover:bg-gray-500 rounded">ホーム</a></li>
-            <li class="border-b md:border-none"><a href="/attendance" class="block px-8 py-2 my-4 hover:bg-gray-500 rounded">日付一覧 </a></li>
-            <li class="border-b border-opacity-0 md:border-none"><a href="/login" class="block px-8 py-2 my-4 hover:bg-gray-500 rounded">ログアウト</a></li>
+            <li class="border-b md:border-none"><a href="/login" class="block px-8 py-2 my-4 hover:bg-gray-500 rounded">ログアウト</a></li>
+            
+            </form>
+            </a></li>
           </ul>
-      </div>
   </header>
 </div>
 
-<div>
-  <!-- component -->
-  <div class="container w-screen bg-white rounded-lg shadow-lg">
+
+
+
+<!-- component -->
+<div class="container">
+  @if(Auth::check())
+  <p></p>
+    @else
+    <p>ログインしていません。(<a href="/login">ログイン</a>|
+    <a href="/register">登録</a>)</p>
+    @endif
     <div class="md:h-full md:py-36 w-screen flex justify-center items-center">
+
+<div>
       <div class="">
-        <p>さんお疲れ様です！</p>
+        <p class="my-8 font-bold text-3xl text-gray-600">毎日をHappyに！</p>
         @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
@@ -57,11 +69,11 @@
           @enderror
             <tr>
               <th class="py-4 px-4">
-                @if(!empty($date))
+                @if(empty($item))
                 <input type="hidden" name="user_id" value="1">
                 <input type="hidden" name="date" value= "date">
                   <button class="py-20 px-32 text-white text-2xl rounded-lg bg-red-500 font-bold	 shadow-lg block md:inline-block">勤務開始</button>
-                @else(empty($date))
+                @else(!empty($item))
                   <button disabled class="py-20 px-32 text-white text-2xl rounded-lg bg-red-200 font-bold	 shadow-lg block md:inline-block">勤務開始</button>
                 @endif
 
@@ -71,34 +83,43 @@
               <form action="/end" method="POST">
               @csrf
               <th class="py-4 px-4">
-                @if(!empty($start_times))
+                @if(!empty($item))
                 <input type="hidden" name="user_id" value="1">
                 <button>
                   <input type="submit" value="勤務終了" class="py-20 px-32 text-white text-2xl rounded-lg bg-yellow-400 font-bold	 shadow-lg block md:inline-block"></button>
-                  @else(empty(start_times))
+                  @else(empty($item))
                   <button disabled class="py-20 px-32 text-white text-2xl rounded-lg bg-yellow-200 font-bold	 shadow-lg block md:inline-block">勤務終了</button>
                 @endif
 
               </th>
-              </tr>
-            </form>
-            <!-- 休憩開始 -->
+            </tr>
+          </form>
+          <!-- 休憩開始 -->
           <form action="/rest_start" method="POST">
-            @csrf
+          @csrf
           <tr>
-              <th class="py-4 px-4">
-                <input type="hidden" name="user_id" value="1">
-                <button>
-                  <input type="submit" value="休憩開始" class="py-20 px-32 text-white text-2xl rounded-lg bg-purple-600 font-bold	 shadow-lg block md:inline-block"></button>
+            <th class="py-4 px-4">
+              @if(empty($rest))
+              <input type="hidden" name="user_id" value="1">
+              <button>
+                <input type="submit" value="休憩開始" class="py-20 px-32 text-white text-2xl rounded-lg bg-purple-600 font-bold	 shadow-lg block md:inline-block"></button>
+                <!-- 2回目押した時の反応を作る-->
+                @else(!empty($rest))
+                <button disabled class="py-20 px-32 text-white text-2xl rounded-lg bg-purple-200 font-bold	 shadow-lg block md:inline-block">休憩開始</button>
+                  @endif
               </th>
                 </form>
             <!-- 休憩終了 -->
           <form action="/rest_end" method="POST">
             @csrf
               <th class="py-4 px-4">
+                @if(!empty($rest))
                 <input type="hidden" name="user_id" value="1">
                 <button>
                   <input type="submit" value="休憩終了" class="py-20 px-32 text-white text-2xl rounded-lg bg-green-400 font-bold	 shadow-lg block md:inline-block"></button>
+                  @else(empty($rest))
+                <button disabled class="py-20 px-32 text-white text-2xl rounded-lg bg-green-200 font-bold	 shadow-lg block md:inline-block">休憩終了</button>
+                  @endif
                 </th>
           </tr>
         </form>

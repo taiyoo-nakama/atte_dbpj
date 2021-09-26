@@ -14,14 +14,17 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('/', [WorkController::class,'work']);//->middleware('auth');
+Route::get('/index', [WorkController::class,'index']);
+
+Route::get('/', [WorkController::class,'work'])->middleware('auth');
 Route::get('/attendance', [WorkController::class,'attendance']);
 //勤務開始
 Route::post('/start', [WorkController::class,'start']);
 //勤務終了
-//Route::get('/end',[WorkController::class,'end']);
 Route::post('/end',[WorkController::class,'update']);
+Route::get('/thanks',[WorkController::class,'thanks']);
 //休憩開始
-Route::post('/rest_start',[WorkController::class,'rest_start']);
+Route::get('/rest',[WorkController::class,'rest']);
 //休憩終了
+Route::get('/breaks_end',[WorkController::class,'rest_start']);
 Route::post('/rest_end',[WorkController::class,'rest_end']);

@@ -14,43 +14,38 @@ class WorkController extends Controller
 {
     //Work model
     public function work(Request $request){
-       /* $user = Work::user();
-        $items = Work::paginate(4);
-        $param = ['items' =>$items,'user'=>$user];*/
-        $item = Work::where('date')->first();
-        $date = Carbon::today()->parse('2021-01-01');
-        return view('tests.work-test1',[
-            'date' => $date,
-        ]);
-    }
-    /*public function search(Request $request){
-        $date = Work::where('date',$request->input)->first();
         $param = [
-            'input' => $request->input,
-            'date' => $date
+            'item' => Work::where('date',Carbon::today())->first(),
+            'rest' => Rest::where('date',Carbon::today())->first(),
+            $user = Auth::user(),
         ];
         return view('tests.work-test1',$param);
-    }*/
+        /* $user = Work::user();
+        $items = Work::paginate(4);
+        $param = ['items' =>$items,'user'=>$user];*/
+    }
+    public function rest(Request $request){
+        $param = [
+        ];
+        return view('tests.work-test1',$param);
+    }
+
     public function attendance(){
         return view('tests.attendance-test1');
     }
 
     //勤務開始
-    public function start(Request $request)
-    {
+    public function start(Request $request){
         //createメソッド
-        $timestamp = Work::create([
+        Work::create([
             'user_id' => 1,
-            //'date' => '',
-            $date = Carbon::today()->parse('2021-01-01'),
-            'date' => $date,
-            ]);
-        return view('tests.work-test1',[
-            'timestamp' => $timestamp,
+            'date' => Carbon::today(),
+            'start_time' => Carbon::now(),
         ]);
+        return redirect('/');
     }
+
     //勤務終了
-    
     public function update(Request $request)
     {
         //エラー確認（1日一回の打刻）
@@ -60,20 +55,29 @@ class WorkController extends Controller
 
         //updateめそっど
         $end_times = Carbon::now();
-        Work::where('user_id',$request->user_id)->update(['end_time' => $end_times]);
-        return view('tests.work-test1',['end_time' => $end_times]);
+        Work::where('user_id',$request->user_id)
+        ->update(['end_time' => $end_times]);
+        //return view('tests.work-test1',['end_time' => $end_times]);
+        return view('tests.thanks');
+
+    }
+    //Thanksページ
+    public function thanks()
+    {
+        return view('tests.thanks');
     }
     //休憩開始
     public function rest_start(Request $request)
     {
-        $this->validate($request,Rest::$rules);
+        //$this->validate($request,Rest::$rules);
 
-        $rest_starts = Carbon::now();
         Rest::create([
             'user_id' => 1,
-            'rest_start' => $rest_starts
+            'date' => Carbon::today(),
+            'rest' => Carbon::now(),
         ]);
-        return view('tests.work-test1',['rest_start' => $rest_starts]);
+        return redirect('/');
+
     }
     //休憩終了
     public function rest_end(Request $request)
@@ -83,6 +87,6 @@ class WorkController extends Controller
         $rest_ends = Carbon::now();
         Rest::where('user_id',$request->user_id)
         ->update(['rest_end' => $rest_ends]);
-        return view('tests.work-test1',['rest_end' => $rest_ends]);
+        return view('tests.breaks_end');
     }
 }

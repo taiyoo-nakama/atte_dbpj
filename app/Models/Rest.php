@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Rest extends Model
 {
     use HasFactory;
-    protected $fillable = ['user_id','rest_start','rest_end'];
+    protected $fillable = ['user_id','date','rest_start','rest_end'];
 
     public static $rules = array(
         'user_id' => 'required',//uniqueは使いづらい（時間）
