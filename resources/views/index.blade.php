@@ -1,6 +1,7 @@
 @extends('layouts.layouts')
 
-@section('content')
+
+
 @if(Auth::check())
 <p>ログイン中のユーザー:{{$user->name.'メール'.$user->email.''}}
 </p>

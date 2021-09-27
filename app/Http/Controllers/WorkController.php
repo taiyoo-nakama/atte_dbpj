@@ -80,7 +80,7 @@ class WorkController extends Controller
 
     }
     //休憩終了
-    public function rest_end(Request $request)
+    public function breaks_end(Request $request)
     {
         $this->validate($request,Rest::$rules);
 
@@ -89,4 +89,6 @@ class WorkController extends Controller
         ->update(['rest_end' => $rest_ends]);
         return view('tests.breaks_end');
     }
+    //ログアウト
+    
 }

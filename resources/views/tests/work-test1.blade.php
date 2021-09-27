@@ -25,7 +25,7 @@
         <div :class="isOpen ? 'block' : 'hidden'" >
           <ul class="md:flex md:justify-end  text-white">
             <li class="border-b md:border-none"><a href="/" class="block px-8 py-2 my-4 hover:bg-gray-500 rounded">ホーム</a></li>
-            <li class="border-b md:border-none"><a href="/login" class="block px-8 py-2 my-4 hover:bg-gray-500 rounded">ログアウト</a></li>
+            <li class="border-b md:border-none"><a href="/logout" class="block px-8 py-2 my-4 hover:bg-gray-500 rounded">ログアウト</a></li>
             
             </form>
             </a></li>
@@ -80,7 +80,8 @@
               </th>
               </form>
               <!-- 勤務終了 -->
-              <form action="/end" method="POST">
+              
+              <form action="/thanks" method="POST">
               @csrf
               <th class="py-4 px-4">
                 @if(!empty($item))
@@ -110,7 +111,7 @@
               </th>
                 </form>
             <!-- 休憩終了 -->
-          <form action="/rest_end" method="POST">
+          <form action="/breaks_end" method="POST">
             @csrf
               <th class="py-4 px-4">
                 @if(!empty($rest))

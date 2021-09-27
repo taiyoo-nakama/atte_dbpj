@@ -10,8 +10,7 @@
 </head>
 <body>
   <x-slot name="header">
-    
-  <div class="header">
+    <div class="header">
   <div class=" bg-gray-800 bg-opacity-90 shadow-2xl ">
   <header class="container mx-auto text-white">
       <div class="flex justify-between items-center p-3 md:float-left">
@@ -27,16 +26,16 @@
         <div :class="isOpen ? 'block' : 'hidden'" >
           <ul class="md:flex md:justify-end  text-white">
             <li class="border-b md:border-none"><a href="/" class="block px-8 py-2 my-4 hover:bg-gray-500 rounded">ホーム</a></li>
-            <li class="border-b border-opacity-0 md:border-none"><a href="/login" class="block px-8 py-2 my-4 hover:bg-gray-500 rounded">ログアウト</a></li>
+            <li class="border-b border-opacity-0 md:border-none"><a href="/logout" class="block px-8 py-2 my-4 hover:bg-gray-500 rounded">ログアウト</a></li>
           </ul>
       </div>
   </header>
 </x-slot>
 </div>
 </div>
-<div class="content">
-  @yield('content')
 
+<div class="content">
+@yield('content')
 
 </div>
 
